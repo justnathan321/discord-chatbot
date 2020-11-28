@@ -7,6 +7,7 @@
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 from datetime import datetime
+import requests
 import random
 import discord
 from chatterbot.trainers import ChatterBotCorpusTrainer
@@ -18,7 +19,7 @@ from discord.ext import commands
 client = discord.Client()
 
 # Discord Bot Token
-TOKEN = "NzgxOTQ2MDY4Njg2NDcxMTk4.X8FCBg.EcO4jRMcU-HlT-nsbbwAcLOPpsY"
+TOKEN = "NzgxOTQ2MDY4Njg2NDcxMTk4.X8FCBg.KHeXilMFssaRDBIeM_AXlfienVk"
 # Array with greetings that will pop up after the start conversation msg
 msg_greetings = ["Hey", "Whats up?", "I'm always here!", "Heya! Let's talk.", "I would like to!", "Let's have a chat",
                  "Hey, let's talk!",
@@ -34,47 +35,30 @@ msg_bye = ["Well... We had a great talk! Goodbye.", "Hope to talk to you again s
                                                                                              "Lets talk again very "
                                                                                              "soon!"]
 # Msg of client to start the conversation
-msg_start = "can someone talk"
+msg_start = "hey voca"
 # Msg of client to stop the conversation
-msg_stop = "stop the conversation"
+msg_stop = "bye voca"
 # Bool conversation started, false if not
 conv_started = False
+
 
 # Create chatbot
 #  If you wish to disable the bot’s ability to learn after the training, you can include the “read_only=True” command.
 #  “logic_adapters” denotes the list of adapters used to train the chatbot.
 #  “chatterbot.logic.MathematicalEvaluation” helps the bot to solve math problems,
 #  “chatterbot.logic.BestMatch” helps it to choose the best match from the list of responses already provided.
-#my_bot = ChatBot(name="ChatBot",
+# my_bot = ChatBot(name="ChatBot",
 #                 logic_adapters=['chatterbot.logic.MathematicalEvaluation', 'chatterbot.logic.BestMatch'])
 # Responses to train chatbot
-small_talk = ['how are you?',
-              'how do you feel?',
-              'that is great',
-              'too bad... sorry to hear that',
-              'glad to hear that!',
-              'sorry to hear that...',
-              'excellent, glad to hear that',
-              'i am fine, thank you',
-              'i feel awesome',
-              'i feel... robotic?',
-              'i am a robot, i feel robotic!',
-              'ask me a funny joke, please.',
-              'please ask me a funny joke',
-              'i want to tell you a joke, please ask me for one']
-
-joke_talk = ['Hear about the new restaurant called Karma? There’s no menu: You get what you deserve.',
-             'Did you hear about the actor who fell through the floorboards? He was just going through a stage.',
-             'Where are average things manufactured? The satisfactory.']
+# TO-DO
 
 # Train the bot by writing an instance of “ListTrainer” and supplying it with a list of strings
-#list_trainer = ListTrainer(my_bot)
-#for item in (small_talk, joke_talk):
+# list_trainer = ListTrainer(my_bot)
+# for item in (small_talk, joke_talk):
 #    list_trainer.train(item)
 
-#corpus_trainer = ChatterBotCorpusTrainer(my_bot)
-#corpus_trainer.train('chatterbot.corpus.english')
-
+# corpus_trainer = ChatterBotCorpusTrainer(my_bot)
+# corpus_trainer.train('chatterbot.corpus.english')
 
 
 # Discord event
@@ -83,6 +67,8 @@ joke_talk = ['Hear about the new restaurant called Karma? There’s no menu: You
 # When message is sent by client
 async def on_message(message):
     global conv_started
+    if message.author == client.user:
+        return
     # Make message content lowercase
     message.content = message.content.lower()
     if message.content.startswith(msg_start):
@@ -110,9 +96,8 @@ async def on_message(message):
             await message.channel.send(
                 msg_bye[random.randint(0, len(msg_bye) - 1)])
             conv_started = False
-
     elif conv_started:
-        #get a respone from the chatbot
+        # get a respone from the chatbot
         await chatbotResponder.get_response(message)
 
 
