@@ -19,7 +19,7 @@ from discord.ext import commands
 client = discord.Client()
 
 # Discord Bot Token
-TOKEN = "NzgxOTQ2MDY4Njg2NDcxMTk4.X8FCBg.KHeXilMFssaRDBIeM_AXlfienVk"
+TOKEN = ""
 # Array with greetings that will pop up after the start conversation msg
 msg_greetings = ["Hey", "Whats up?", "I'm always here!", "Heya! Let's talk.", "I would like to!", "Let's have a chat",
                  "Hey, let's talk!",
