@@ -1,7 +1,7 @@
 # Discord Chatbot
 Written in Python, mainly uses Discord API. 
 
-# How to connect the bot to you Discord server
+# How to connect the bot to your Discord server
 Useful link:<br>
 https://discordpy.readthedocs.io/en/latest/discord.html<br>
 
