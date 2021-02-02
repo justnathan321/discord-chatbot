@@ -1,6 +1,10 @@
 # Discord Chatbot
 Written in Python, mainly uses Discord API. 
 
+# How to connect the bot to you Discord server
+Useful link:<br>
+https://discordpy.readthedocs.io/en/latest/discord.html<br>
+
 # How it works
 Start a conversation with Voca by typing "Hey Voca"<br>
 End a conversation with Voca by typing "Bye Voca"
